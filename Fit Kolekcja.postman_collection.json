@@ -2,200 +2,205 @@
 	"info": {
 		"_postman_id": "16154f5f-2ade-40d0-98cc-4c703c2999a5",
 		"name": "Fit Kolekcja",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "38898361"
 	},
 	"item": [
 		{
-			"name": "Wszyscy użytkownicy",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:1410/v1/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Wszyscy użytkownicy - simple",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:1410/v1/users/simple",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users",
-						"simple"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Parametr użytkownika - ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:1410/v1/users/6",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users",
-						"6"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Stwórz użytkownika",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Kacper\",\r\n    \"lastName\": \"Ciszewski\",\r\n    \"birthdate\": \"2000-02-25\",\r\n    \"email\": \"koniec.z.java@ciszke.pl\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+			"name": "users",
+			"item": [
+				{
+					"name": "Wszyscy użytkownicy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:1410/v1/users"
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:1410/v1/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Aktualizacja użytkownika",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Texalis\",\n    \"lastName\": \"Bhaalborn\",\n    \"birthdate\": \"2000-02-25\",\n    \"email\": \"koniec.z.java@ciszke.pl\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+				{
+					"name": "Wszyscy użytkownicy - simple",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:1410/v1/users/simple"
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:1410/v1/users/18",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users",
-						"18"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Usunięcie użytkownika",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:1410/v1/users/18",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users",
-						"18"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Wyszukanie użytkownika po e-mail",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:1410/v1/users/email?email=domain",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users",
-						"email"
-					],
-					"query": [
-						{
-							"key": "email",
-							"value": "domain"
+				{
+					"name": "Parametr użytkownika - ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:1410/v1/users/6"
+					},
+					"response": []
+				},
+				{
+					"name": "Stwórz użytkownika",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Kacper\",\r\n    \"lastName\": \"Ciszewski\",\r\n    \"birthdate\": \"2000-02-25\",\r\n    \"email\": \"koniec.z.java@ciszke.pl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:1410/v1/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Aktualizacja użytkownika",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Texalis\",\n    \"lastName\": \"Bhaalborn\",\n    \"birthdate\": \"2000-02-25\",\n    \"email\": \"koniec.z.java@ciszke.pl\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:1410/v1/users/18"
+					},
+					"response": []
+				},
+				{
+					"name": "Usunięcie użytkownika",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:1410/v1/users/18"
+					},
+					"response": []
+				},
+				{
+					"name": "Wyszukanie użytkownika po e-mail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1410/v1/users/email?email=domain",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1410",
+							"path": [
+								"v1",
+								"users",
+								"email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "domain"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Wyszukiwanie usera po email (stary)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:1410/v1/users/older/1981-12-15"
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Wyszukiwanie usera po email (stary)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:1410/v1/users/older/1981-12-15",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "1410",
-					"path": [
-						"v1",
-						"users",
-						"older",
-						"1981-12-15"
-					]
+			"name": "training",
+			"item": [
+				{
+					"name": "Wszystkie Treningi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/training"
+					},
+					"response": []
+				},
+				{
+					"name": "Trening po ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/training/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Treningi zakończone po danej dacie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/training/finished/2022-02-25"
+					},
+					"response": []
+				},
+				{
+					"name": "Trening po aktywności",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/training/activityType?activityType=CYCLING",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"training",
+								"activityType"
+							],
+							"query": [
+								{
+									"key": "activityType",
+									"value": "CYCLING"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stwórz trening",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{BaseURL}}/training/11"
+					},
+					"response": []
+				},
+				{
+					"name": "Aktualizacja treningu",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "{{BaseURL}}/training/11"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/training/11"
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
