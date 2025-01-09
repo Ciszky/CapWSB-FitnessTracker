@@ -7,6 +7,9 @@ import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Converts Training entities to Training DTOs and vice versa.
+ */
 @Component
 @RequiredArgsConstructor
 public class TrainingMapper {

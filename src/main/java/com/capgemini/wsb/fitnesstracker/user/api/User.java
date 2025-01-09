@@ -1,11 +1,23 @@
 package com.capgemini.wsb.fitnesstracker.user.api;
 
-import jakarta.annotation.Nullable;
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 
+import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+/**
+ * Entity representing a user in the fitness tracker application.
+ */
 @Entity
 @Table(name = "users")
 @Getter
@@ -31,17 +43,18 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    public User(
-            final String firstName,
-            final String lastName,
-            final LocalDate birthdate,
-            final String email) {
-
+    /**
+     * Constructs a new User with the specified details.
+     *
+     * @param firstName The first name of the user
+     * @param lastName The last name of the user
+     * @param birthdate The birthdate of the user
+     * @param email The email of the user
+     */
+    public User(final String firstName, final String lastName, final LocalDate birthdate, final String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.email = email;
     }
-
 }
-

@@ -1,10 +1,12 @@
 package com.capgemini.wsb.fitnesstracker.loader;
 
-import com.capgemini.wsb.fitnesstracker.training.api.Training;
-import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
-import com.capgemini.wsb.fitnesstracker.user.api.User;
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import static java.time.LocalDate.now;
+import java.util.ArrayList;
+import java.util.List;
+import static java.util.Objects.isNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -13,13 +15,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import com.capgemini.wsb.fitnesstracker.training.api.Training;
+import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 
-import static java.time.LocalDate.now;
-import static java.util.Objects.isNull;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Sample init data loader. If the application is run with `loadInitialData` profile, then on application startup it will fill the database with dummy data,

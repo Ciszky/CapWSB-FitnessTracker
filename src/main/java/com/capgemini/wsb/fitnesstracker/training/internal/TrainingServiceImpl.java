@@ -1,18 +1,20 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotFoundException;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Implementation of the TrainingService interface.
@@ -22,9 +24,6 @@ import java.util.Optional;
 @Slf4j
 public class TrainingServiceImpl implements TrainingService, TrainingProvider {
 
-    /**
-     * Repository for training entities.
-     */
     private final TrainingRepository trainingRepository;
 
     /**
@@ -99,8 +98,7 @@ public class TrainingServiceImpl implements TrainingService, TrainingProvider {
      * @return the created training
      */
     @Override
-    public Training createTraining(Training training)
-    {
+    public Training createTraining(Training training) {
         log.info("Creating training {}", training);
         if (training.getId() != null) {
             throw new IllegalArgumentException("Training id is already set");
@@ -112,7 +110,8 @@ public class TrainingServiceImpl implements TrainingService, TrainingProvider {
      * Updates the training with the given ID.
      *
      * @param id ID of the training to be updated
-     *           updatedTraining the updated training
+     * @param updatedTraining the updated training
+     * @return the updated training
      */
     @Override
     public Training updateTraining(Long id, Training updatedTraining) {
@@ -138,6 +137,13 @@ public class TrainingServiceImpl implements TrainingService, TrainingProvider {
         return trainingRepository.save(existingTraining);
     }
 
+    /**
+     * Partially updates the training with the given ID.
+     *
+     * @param id ID of the training to be updated
+     * @param updates map of fields to update
+     * @return the updated training
+     */
     @Override
     public Training partiallyUpdateTraining(Long id, Map<String, Object> updates) {
         Training training = trainingRepository.findById(id)
@@ -170,6 +176,11 @@ public class TrainingServiceImpl implements TrainingService, TrainingProvider {
         return trainingRepository.save(training);
     }
 
+    /**
+     * Deletes the training with the given ID.
+     *
+     * @param id ID of the training to be deleted
+     */
     @Override
     public void deleteTraining(Long id) {
         trainingRepository.deleteById(id);

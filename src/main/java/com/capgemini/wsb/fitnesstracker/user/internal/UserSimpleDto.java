@@ -1,7 +1,12 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
-import jakarta.annotation.Nullable;
-
-public record UserSimpleDto(@Nullable Long id, String firstName, String lastName){
-
+/**
+ * A simple DTO for user information.
+ *
+ * @param id the ID of the user
+ * @param firstName the first name of the user
+ * @param lastName the last name of the user
+ */
+public record UserSimpleDto(Long id, String firstName, String lastName) {
+    // No additional methods or fields required
 }

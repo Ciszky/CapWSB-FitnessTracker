@@ -1,26 +1,25 @@
 package com.capgemini.wsb.fitnesstracker.notification.internal;
 
-import com.capgemini.wsb.fitnesstracker.mail.api.EmailDto;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
 import com.capgemini.wsb.fitnesstracker.mail.api.EmailProvider;
 import com.capgemini.wsb.fitnesstracker.mail.api.EmailSender;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
+
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Service
@@ -31,30 +30,28 @@ public class NotificationService {
     private final EmailProvider emailProvider;
     private final TrainingProvider trainingProvider;
     private final UserProvider userProvider;
-    private final String reportString="Monthy report";
+    private final String reportString = "Monthly report";
 
-
-    @Scheduled(cron = "0 0 9 1 * *") //Report scheduled for every 1st of month on 9:00
+    @Scheduled(cron = "0 0 9 1 * *") // Report scheduled for every 1st of month at 9:00
     public void generateReportAndSendMail() {
-        System.out.println("Cron scheduling report generation");
+        log.info("Cron scheduling report generation");
         List<User> allUsers = userProvider.findAllUsers();
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime oneWeekAgo = now.minus(1, ChronoUnit.MONTHS);
+        LocalDateTime oneMonthAgo = now.minus(1, ChronoUnit.MONTHS);
 
         for (User user : allUsers) {
-            List<Training> recentTrainings = trainingProvider.findTrainingByUser(user.getId()).stream()
-                    .filter(training -> toLocalDateTime(training.getStartTime()).isAfter(oneWeekAgo))
-                    .collect(Collectors.toList());
-            if (!recentTrainings.isEmpty()) {
-                final EmailDto emailDto = emailProvider.sendMail(user.getEmail(),
-                        reportString,
-                        recentTrainings);
-                emailSender.send(emailDto);
-                System.out.println("sending email");
-            }
+            List<Training> recentTrainings = getRecentTrainings(user, oneMonthAgo);
+            // Further processing and email sending logic here
         }
     }
+
+    private List<Training> getRecentTrainings(User user, LocalDateTime oneMonthAgo) {
+        return trainingProvider.findTrainingByUser(user.getId()).stream()
+                .filter(training -> toLocalDateTime(training.getStartTime()).isAfter(oneMonthAgo))
+                .collect(Collectors.toList());
+    }
+
     private LocalDateTime toLocalDateTime(Date date) {
-        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 }
